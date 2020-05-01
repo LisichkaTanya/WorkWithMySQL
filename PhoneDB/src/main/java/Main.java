@@ -14,12 +14,12 @@ public class Main {
         while (exit.equals("no")) {
             System.out.println("Choose the operation. Enter the appropriate number: \n" +
                     "1 - add new user \n" +
-                    "2 - find a user by full surname \n" +
+                    "2 - find a user by surname \n" +
                     "3 - find a user by name \n" +
                     "4 - find a user by phone number \n" +
-                    "5 - delete from database by id \n" +
-                    "6 - delete from database by phone number \n" +
-                    "7 - rename a user \n" +
+                    "5 - delete from database \n" +
+                    "6 -  \n" +
+                    "7 -  \n" +
                     "8 - view all users\n" +
                     "9 - exit the program");
 
@@ -30,10 +30,23 @@ public class Main {
                              readFromScreen("Enter name"),
                              readFromScreen("Enter phone number"));
                     break;
-
-                case 5: workWithDB.deleteFromDBbyID(readFromScreen("Enter id which you want to delete"));
+                case 2: workWithDB.findBySurname(readFromScreen("Enter surname which you want to find"));
                     break;
-                case 6 : workWithDB.deleteFromDBbyPhoneNumber(readFromScreen("Enter phone number which you want to delete"));
+                case 3: workWithDB.findBySurname(readFromScreen("Enter name which you want to find"));
+                    break;
+                case 4: workWithDB.findBySurname(readFromScreen("Enter phone number which you want to find"));
+                    break;
+                case 5: String param = readFromScreen("Enter the parameter that we will look for to delete ('id', 'name', 'surname' or 'phone number')");
+                    if (param.equals("id")){
+                        workWithDB.findByID(readFromScreen("Enter id which you want to find"));
+                    } else if (param.equals("name")){
+                        workWithDB.findByName(readFromScreen("Enter name which you want to find"));
+                    }else if (param.equals("surname")){
+                        workWithDB.findBySurname(readFromScreen("Enter surname which you want to find"));
+                    }else if (param.equals("phone number")){
+                        workWithDB.deleteFromDBbyPhoneNumber(readFromScreen("Enter phone number which you want to find"));
+                    }
+                    workWithDB.deleteFromDB(readFromScreen("Enter <id> to delete the line from database"));
                     break;
 
                 case 8: workWithDB.viewTable();
