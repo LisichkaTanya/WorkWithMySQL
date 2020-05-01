@@ -16,7 +16,6 @@ public class WorkWithDB {
         }
     }
 
-
     public void viewTable (){
         try {
             Statement statement = connectDB.getConnection().createStatement();
@@ -30,6 +29,28 @@ public class WorkWithDB {
 
                 System.out.println(user);
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void deleteFromDBbyPhoneNumber(String phone){
+        String DELETE = "delete from phonenumbers where phonenumber= ?";
+        try {
+            PreparedStatement preparedStatement = connectDB.getConnection().prepareStatement(DELETE);
+            preparedStatement.setString(1,phone);
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void deleteFromDBbyID(String id){
+        String DELETE = "delete from phonenumbers where id= ?";
+        try {
+            PreparedStatement preparedStatement = connectDB.getConnection().prepareStatement(DELETE);
+            preparedStatement.setString(1,id);
+            preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
